@@ -8,14 +8,16 @@ function SearchLists() {
   const { search } = useSelector((state) => state.filter);
 
   const searchFilter = (destination) => {
-   
+    if (search === "") {
+      // console.log(destination.title, "check");
+      return false;
+    }
+
     // console.log(search !== undefined);
     if (search !== undefined) {
-      if (search === "") {
-        // console.log(destination.title, "check");
-        return false;
-      }
-      return destination.title.includes(search) || destination.title.toLowerCase().includes();
+      console.log(destination.title.includes(search) || destination.title.toLowerCase());
+
+      return destination.title.includes(search) || destination.title.toLowerCase().includes(search);
     }
   };
 
