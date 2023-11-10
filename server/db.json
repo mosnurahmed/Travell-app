@@ -2,17 +2,10 @@
   "booking": [
     {
       "email": "mosnurahmed01@gmail.com",
-      "name": "sfsdfs",
-      "phone": "ssdfsadf",
+      "name": "Mosnur",
+      "phone": "01981916908",
       "data": "2023-11-23",
       "id": 1
-    },
-    {
-      "email": "mosnurahmed01@gmail.com",
-      "name": "sfsdfs",
-      "phone": "ssdfsadf",
-      "data": "2023-11-23",
-      "id": 2
     }
   ],
   "destination": [

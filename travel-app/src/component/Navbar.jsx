@@ -8,9 +8,15 @@ function Navbar() {
 
   useEffect(() => {
     if (!isLoading) {
+      console.log("user", user);
       setUsers(user);
     }
   }, [user, isLoading]);
+
+  const logoutHandler = () => {
+    logout({ logoutParams: { returnTo: window.location.origin } });
+    localStorage.clear();
+  };
 
   return (
     <div className="  flex flex-colum justify-between font-normal flex-wrap my-4">
@@ -34,7 +40,7 @@ function Navbar() {
 
           <p
             className="border border-2 border-sky-400 rounded p-1 bg-blue-200 text-gray-700"
-            onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+            onClick={() => logoutHandler}
           >
             logout
           </p>

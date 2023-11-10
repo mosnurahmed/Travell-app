@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
 import { useGetDestinationsQuery } from "../feature/destination/destinationApi";
@@ -8,7 +8,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { addEmail } from "../feature/user/userSlice";
 
 function Destinations() {
-  const { user, isAuthenticated, isLoading: authLoading } = useAuth0();
+  const { user, isLoading: authLoading,isAuthenticated } = useAuth0();
+  const [userEmail, setUserEmail] = useState(" ");
   const { data: destinations, isLoading, isError, error } = useGetDestinationsQuery();
   const dispatch = useDispatch();
 
@@ -18,16 +19,17 @@ function Destinations() {
     }
   }, [isLoading, isError, destinations, dispatch]);
 
-  useEffect(() => {
-    // if (!isLoading && !isError && destinations?.length > 0) {
-    //   dispatch(addDestinations(destinations));
-    // }
+  // useEffect(() => {
+  //   // if (!isLoading && !isError && destinations?.length > 0) {
+  //   //   dispatch(addDestinations(destinations));
+  //   // }
 
-    if (!authLoading) {
-      localStorage.setItem("user", JSON.stringify({ email: user.email }));
-      dispatch(addEmail(user.email));
-    }
-  }, [authLoading, user]);
+  //   if (!authLoading) {
+  //     console.log(authLoading, user);
+  //     localStorage.setItem("user", JSON.stringify({ email: userEmail }));
+  //     dispatch(addEmail(userEmail));
+  //   }
+  // }, [authLoading, user]);
 
   let content = null;
 
@@ -39,6 +41,16 @@ function Destinations() {
     content = <div>No Destination found!</div>;
   } else if (!isLoading && !isError && destinations?.length > 0) {
     content = destinations.slice(0, 3).map((destination) => {
+
+      if (isAuthenticated) {
+        // console.log(authLoading, user);
+        
+        localStorage.setItem("user", JSON.stringify({ email: user.email }));
+        dispatch(addEmail(user.email));
+      }
+    
+
+
       return <Card key={destination.id} destination={destination} />;
     });
   }
