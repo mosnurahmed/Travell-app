@@ -40,7 +40,7 @@ function Navbar() {
 
           <p
             className="border border-2 border-sky-400 rounded p-1 bg-blue-200 text-gray-700"
-            onClick={() => logoutHandler}
+            onClick={logoutHandler}
           >
             logout
           </p>

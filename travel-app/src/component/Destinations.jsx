@@ -45,7 +45,7 @@ function Destinations() {
       if (isAuthenticated) {
         // console.log(authLoading, user);
         
-        localStorage.setItem("user", JSON.stringify({ email: user.email }));
+        localStorage.setItem("user", JSON.stringify({ email: user.email,id:user.id}));
         dispatch(addEmail(user.email));
       }
     
